@@ -43,4 +43,9 @@ jobs:
       run: ./gradlew :compose:spotlessApply --init-script gradle/init.gradle.kts --no-configuration-cache --stacktrace
 
     - name: Push changes
-      run: git add . && git commit -m "Apply spotless" && git push
+      run: |
+        git config user.email "noreply@github.com"
+        git config user.author ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        git add .
+        git commit -m "Apply spotless"
+        git push
